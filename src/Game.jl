@@ -3,7 +3,7 @@ struct Game{N}
     payoffs::Array{NTuple{N, Float64}, N}
 end
 
-function Game(payoffs::Array{T}) where {T <: Tuple}
+function Game(payoffs::Array{T}) where T <: Tuple
     n = length(payoffs[1])
     Game(map((x) -> convert(NTuple{n, Float64}, x), payoffs))
 end
@@ -13,8 +13,8 @@ function Game(payoffs::Array{T}...) where T <: Number
 end
 
 # create a 2-player zero-sum game
-function zero_sum_game(payoffs::Array{Float64, 2})
-    Game{2}(map((x) -> (x, -x), payoffs))
+function zero_sum_game(payoffs::Matrix{T}) where T <: Number
+    Game{2}(map((x) -> (Float64(x), -Float64(x)), payoffs))
 end
 
 function payoffs(game::Game, player::Int)
