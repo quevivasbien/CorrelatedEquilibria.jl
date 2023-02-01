@@ -1,3 +1,3 @@
 # CorrelEq
 
-[![Build Status](https://github.com/quevivasbien/CorrelEq.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/quevivasbien/CorrelEq.jl/actions/workflows/CI.yml?query=branch%3Amain)
+Finds correlated equilibria of normal form games.

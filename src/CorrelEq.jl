@@ -1,5 +1,8 @@
 module CorrelEq
 
-# Write your package code here.
+export Game, zero_sum_game, payoffs, correl_eq
+
+include("Game.jl")
+include("solve.jl")
 
 end
