@@ -2,6 +2,7 @@ using JuMP
 import HiGHS
 
 # create constraints matrix for a 2-player game
+# this is redundant with the n-player version defined later, but it's faster
 function make_A(game::Game{2})
     (I, J) = size(game.payoffs)
     payoffs_1 = payoffs(game, 1)
@@ -29,8 +30,8 @@ function make_A(game::Game{2})
     A
 end
 
+# create portion of A corresponding to ways player p can defect
 function make_A_p(payoffs::Array{Float64, N}, p::Int) where {N}
-    # create portion of A corresponding to ways player p can defect
     IDX = size(payoffs)
     ncols = prod(IDX)
     row_multiplier = prod(IDX[1:p-1]) * prod(IDX[p+1:N])
@@ -50,6 +51,7 @@ function make_A_p(payoffs::Array{Float64, N}, p::Int) where {N}
     A_p
 end
 
+# create constraints matrix for an n-player game
 function make_A(game::Game{N}) where {N}
     reduce(vcat, [make_A_p(payoffs(game, p), p) for p in 1:N])
 end
@@ -78,8 +80,8 @@ function make_problem(game::Game; best = true)
     m
 end
 
-# solve 2-player game
-function correl_eq(game::Game; best = true, silent = true)
+# find a correlated equilibrium
+function findeq(game::Game; best = true, silent = true)
     m = make_problem(game; best)
     if silent
         set_silent(m)

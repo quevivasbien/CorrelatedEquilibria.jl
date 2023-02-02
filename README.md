@@ -68,14 +68,14 @@ In this case, you'll need to ensure that the matrices provided have the same dim
 
 Solving works by defining a linear program, which is solved using [`JuMP.jl`](https://github.com/jump-dev/JuMP.jl).
 
-Simply pass the game you want to solve to the `correl_eq` function. The result is an array of probabilities for the mixed-strategy equilibrium.
+Simply pass the game you want to solve to the `findeq` function. The result is an array of probabilities for the mixed-strategy equilibrium.
 ```julia
 # using the chicken game from above
 game = Game([
     (0, 0) (7, 2);
     (2, 7) (6, 6)
 ])
-eq = correl_eq(game)
-# should get eq = [0.0 0.25; 0.25 0.5]
+eq = findeq(game)
+# should get eq == [0.0 0.25; 0.25 0.5]
 ```
-By default, the result is the correlated equilibrium that maximizes total payoffs. If you want just any correlated equilibrium, you can set the keyword argument `best` to `false`, i.e., `correl_eq(game, best = false)`.
+By default, the result is the correlated equilibrium that maximizes total payoffs. If you want just any correlated equilibrium, you can set the keyword argument `best` to `false`, i.e., `findeq(game, best = false)`.
