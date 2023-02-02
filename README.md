@@ -1,4 +1,4 @@
-# CorrelEq
+# CorrelatedEquilibria.jl
 
 A package for finding correlated equilibria of normal form games.
 

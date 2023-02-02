@@ -1,7 +1,7 @@
-using CorrelEq
+using CorrelatedEquilibria
 using Test
 
-@testset "CorrelEq.jl" begin
+@testset "CorrelatedEquilibria.jl" begin
     # test zero-sum constructor
     @test begin
         game = zero_sum_game([-2 -1; 1 2])

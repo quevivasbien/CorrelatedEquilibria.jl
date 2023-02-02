@@ -1,4 +1,4 @@
-module CorrelEq
+module CorrelatedEquilibria
 
 export Game, zero_sum_game, payoffs, findeq
 
